@@ -112,6 +112,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         xcode_targets = {"deps": [this_target_type]}
 
         # Command-line tools
+        # This will catch `sh_binary` and the like, but those currently get
+        # excluded via `target_type` checks when processing the target as a
+        # dependency
         executable = target[DefaultInfo].files_to_run.executable
         should_generate_target = executable and not executable.is_source
 
