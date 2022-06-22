@@ -67,6 +67,9 @@ target type are allowed to propagate.
 
 target_type = struct(
     compile = "compile",
+    #     top_level = "top_level",
+    #     library = "library",
+    #     resource_bundle = "resource_bundle",
 )
 
 XcodeProjInfo = provider(
