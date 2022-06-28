@@ -1,0 +1,9 @@
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/libbep_parser.library.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/bep/libbuild_event_stream_proto.swift.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/bep/libcommand_line_proto.swift.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/bep/liboption_filters_proto.swift.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/bep/libfailure_details_proto.swift.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/bep_parser/bep/libinvocation_policy_proto.swift.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_protobuf/libSwiftProtobuf.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a
+test/fixtures/bep_parser/bwb.xcodeproj/rules_xcodeproj/links/gen_dir/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a
