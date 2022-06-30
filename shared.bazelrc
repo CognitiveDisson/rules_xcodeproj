@@ -35,3 +35,5 @@ test --test_output=errors --test_summary=detailed
 # changes we need to bump our --remote_instance_name's
 build --macos_minimum_os=11.0
 build --host_macos_minimum_os=11.0
+
+build --config=ora

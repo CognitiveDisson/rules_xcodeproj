@@ -23,6 +23,7 @@ device_and_simulator(
         "//examples/multiplatform/tvOSApp",
         "//examples/multiplatform/watchOSApp",
         "//examples/multiplatform/watchOSAppExtension",
+        "//examples/multiplatform/WidgetExtension",
     ],
     visibility = ["//visibility:public"],
 )
