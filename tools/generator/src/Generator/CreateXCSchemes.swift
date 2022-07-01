@@ -54,6 +54,19 @@ extension Generator {
             testables = []
         }
 
+        let productType = pbxTarget.productType ?? .none
+        let selectedDebuggerIdentifier: String
+        let selectedLauncherIdentifier: String
+        if productType.canUseDebugLauncher {
+            selectedDebuggerIdentifier = XCScheme.defaultDebugger
+            selectedLauncherIdentifier = XCScheme.defaultLauncher
+        } else {
+            selectedDebuggerIdentifier = ""
+            selectedLauncherIdentifier = """
+Xcode.IDEFoundation.Launcher.PosixSpawn
+"""
+        }
+
         let buildAction = XCScheme.BuildAction(
             buildActionEntries: [.init(
                 buildableReference: buildableReference,
@@ -83,8 +96,12 @@ extension Generator {
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansion,
+            selectedDebuggerIdentifier: selectedDebuggerIdentifier,
+            selectedLauncherIdentifier: selectedLauncherIdentifier,
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
-                pbxTarget.productType?.bazelLaunchEnvironmentVariables : nil,
+                productType.bazelLaunchEnvironmentVariables : nil,
+            launchAutomaticallySubstyle:
+                productType.launchAutomaticallySubstyle,
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
         let profileAction = XCScheme.ProfileAction(
@@ -109,7 +126,7 @@ extension Generator {
             profileAction: profileAction,
             analyzeAction: analyzeAction,
             archiveAction: archiveAction,
-            wasCreatedForAppExtension: nil
+            wasCreatedForAppExtension: productType.isExtension ? true : nil
         )
     }
 
