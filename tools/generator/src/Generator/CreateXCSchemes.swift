@@ -6,7 +6,9 @@ extension Generator {
     static func createXCSchemes(
         schemeAutogenerationMode: SchemeAutogenerationMode,
         buildMode: BuildMode,
+        extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         filePathResolver: FilePathResolver,
+        consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key],
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> [XCScheme] {
         guard schemeAutogenerationMode != .none else {
@@ -66,6 +68,8 @@ extension Generator {
 Xcode.IDEFoundation.Launcher.PosixSpawn
 """
         }
+        let launchAutomaticallySubstyle = productType
+            .launchAutomaticallySubstyle
 
         let buildAction = XCScheme.BuildAction(
             buildActionEntries: [.init(
@@ -100,8 +104,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             selectedLauncherIdentifier: selectedLauncherIdentifier,
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
                 productType.bazelLaunchEnvironmentVariables : nil,
-            launchAutomaticallySubstyle:
-                productType.launchAutomaticallySubstyle,
+            launchAutomaticallySubstyle: launchAutomaticallySubstyle,
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
         let profileAction = XCScheme.ProfileAction(

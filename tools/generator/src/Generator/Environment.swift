@@ -88,7 +88,9 @@ struct Environment {
     let createXCSchemes: (
         _ schemeAutogenerationMode: SchemeAutogenerationMode,
         _ buildMode: BuildMode,
+        _ extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         _ filePathResolver: FilePathResolver,
+        _ consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key],
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> [XCScheme]
 

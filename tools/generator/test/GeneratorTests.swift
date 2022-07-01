@@ -25,6 +25,9 @@ final class GeneratorTests: XCTestCase {
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
             .init(container: "Xe/P.xcdatamodeld", version: "M1.xcdatamodel"),
         ]
+        let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [
+            "WKE": .watchKit,
+        ]
 
         let pbxProj = Fixtures.pbxProj()
         let pbxProject = pbxProj.rootObject!
@@ -457,7 +460,10 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         struct CreateXCSchemesCalled: Equatable {
             let schemeAutogenerationMode: SchemeAutogenerationMode
             let buildMode: BuildMode
+            let extensionPointIdentifiers:
+                [TargetID: ExtensionPointIdentifier]
             let filePathResolver: FilePathResolver
+            let consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         }
 
@@ -465,13 +471,17 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         func createXCSchemes(
             schemeAutogenerationMode: SchemeAutogenerationMode,
             buildMode: BuildMode,
+            extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
             filePathResolver: FilePathResolver,
+            consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key],
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
                 schemeAutogenerationMode: schemeAutogenerationMode,
                 buildMode: buildMode,
+                extensionPointIdentifiers: extensionPointIdentifiers,
                 filePathResolver: filePathResolver,
+                consolidatedTargetKeys: consolidatedTargetKeys,
                 pbxTargets: pbxTargets
             ))
             return schemes
@@ -480,7 +490,9 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
             schemeAutogenerationMode: schemeAutogenerationMode,
             buildMode: buildMode,
+            extensionPointIdentifiers: extensionPointIdentifiers,
             filePathResolver: filePathResolver,
+            consolidatedTargetKeys: disambiguatedTargets.keys,
             pbxTargets: pbxTargets
         )]
 
@@ -594,6 +606,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             buildMode: buildMode,
             project: project,
             xccurrentversions: xccurrentversions,
+            extensionPointIdentifiers: extensionPointIdentifiers,
             projectRootDirectory: projectRootDirectory,
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,

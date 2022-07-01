@@ -41,6 +41,7 @@ class Generator {
         buildMode: BuildMode,
         project: Project,
         xccurrentversions: [XCCurrentVersion],
+        extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         projectRootDirectory: Path,
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,
@@ -151,7 +152,9 @@ Was unable to merge "\(srcTarget.label) \
         let schemes = try environment.createXCSchemes(
             project.schemeAutogenerationMode,
             buildMode,
+            extensionPointIdentifiers,
             filePathResolver,
+            disambiguatedTargets.keys,
             pbxTargets
         )
         let sharedData = environment.createXCSharedData(schemes)
