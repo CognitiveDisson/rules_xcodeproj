@@ -44,10 +44,21 @@ ios_imessage_extension(
 swift_library(
     name = "iMessageAppExtension.library",
     srcs = glob(["**/*.swift"]),
-    data = glob(["ExtensionAssets.xcassets/**"]),
+    # data = glob(["ExtensionAssets.xcassets/**"]),
     module_name = "iMessageAppExtension",
     tags = ["manual"],
     deps = [
         "//Lib",
     ],
+    private_deps = [
+    ":iMessageAppExtension.libraryA"
+    ],
+)
+
+swift_library(
+    name = "iMessageAppExtension.libraryA",
+    srcs = glob(["**/*.swift"]),
+    data = glob(["ExtensionAssets.xcassets/**"]),
+    module_name = "iMessageAppExtensionA",
+    tags = ["manual"],
 )
