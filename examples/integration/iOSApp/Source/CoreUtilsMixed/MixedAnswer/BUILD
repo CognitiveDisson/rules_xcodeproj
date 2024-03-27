@@ -6,6 +6,10 @@ load(
     ":module_map.bzl",
     "module_map",
 )
+load(
+    "@build_bazel_rules_apple//apple:resources.bzl",
+    "apple_resource_group",
+)
 
 module_map(
     name = "MixedAnswer_objc_modulemap",
@@ -42,6 +46,7 @@ objc_library(
 swift_library(
     name = "MixedAnswerLib_Swift",
     srcs = ["MixedAnswer.swift"],
+    data = [":ResourceGroup"],
     copts = [
         "-Xfrontend",
         "-import-underlying-module",
@@ -56,4 +61,9 @@ swift_library(
         "MixedAnswer.h",
         ":MixedAnswer_objc_modulemap",
     ],
+)
+
+apple_resource_group(
+    name = "ResourceGroup",
+    resources = glob(["Assets.xcassets/**"]),
 )

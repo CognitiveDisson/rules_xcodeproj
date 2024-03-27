@@ -71,13 +71,17 @@ string_flag(
         scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
         schemes = get_xcode_schemes(),
         tags = ["manual"],
-        top_level_targets = XCODEPROJ_TARGETS,
+        top_level_targets = ["//iOSApp/Source:iOSApp"],
         tvos_simulator_cpus = simulator_cpu,
+        focused_targets = [
+            "//iOSApp/Source:iOSApp",
+            # "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift",
+        ],
         unfocused_targets = UNFOCUSED_TARGETS,
         # watchOS Simulator CPU on Apple silicon doesn't have 'sim_' prefix
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
         xcode_configurations = XCODE_CONFIGURATIONS,
-        xcschemes = XCSCHEMES,
+        # xcschemes = XCSCHEMES,
     )
     for build_mode in [
         "bazel",
