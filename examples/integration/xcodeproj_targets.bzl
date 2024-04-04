@@ -76,6 +76,12 @@ UNFOCUSED_TARGETS = [
     "//Lib:LibFramework.iOS",
 ]
 
+FOCUSED_TARGETS = [
+    "//iOSApp/Source:iOSApp",
+    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+]
+
 XCODEPROJ_TARGETS = [
     "//cc/tool",
     top_level_target(
@@ -203,70 +209,13 @@ def get_xcode_schemes():
 XCSCHEMES = [
     xcschemes.scheme(
         name = "iOSAppUnitTests_Scheme",
-        test = xcschemes.test(
-            env = {
-                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
-            },
-            test_targets = [
-                xcschemes.test_target(
-                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
-                    post_actions = [
-                        xcschemes.pre_post_actions.launch_script(
-                            title = "Run After Tests",
-                            script_text = "echo \"Hi\"",
-                        ),
-                    ],
-                ),
-                "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
-            ],
+        run = xcschemes.run(
+            launch_target = "//iOSApp/Source:iOSApp",
         ),
-    ),
-    xcschemes.scheme(
-        name = "iOSAppSwiftUnitTests_Scheme",
         test = xcschemes.test(
-            xcode_configuration = "AppStore",
-            env = {
-                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
-            },
             test_targets = [
                 "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
-            ],
-        ),
-    ),
-    xcschemes.scheme(
-        name = "iOSAppUnitTestSuite_CommandLineArgs_Scheme",
-        test = xcschemes.test(
-            args = [
-                "-AppleLanguages",
-                "(en)",
-            ],
-            env = {
-                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
-            },
-            test_targets = [
-                "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
-                xcschemes.test_target(
-                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
-                    post_actions = [
-                        xcschemes.pre_post_actions.launch_script(
-                            title = "Run After Tests",
-                            script_text = "echo \"Hi\"",
-                        ),
-                    ],
-                ),
-            ],
-        ),
-    ),
-    xcschemes.scheme(
-        name = "ios_build_test",
-        run = xcschemes.run(
-            build_targets = [
-                xcschemes.top_level_anchor_target(
-                    "//Lib:ios_Lib",
-                    library_targets = [
-                        "//Lib",
-                    ],
-                ),
+                "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
             ],
         ),
     ),

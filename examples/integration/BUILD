@@ -12,6 +12,7 @@ load(
     "PROJECT_OPTIONS",
     "SCHEME_AUTOGENERATION_MODE",
     "UNFOCUSED_TARGETS",
+    "FOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
     "XCODE_CONFIGURATIONS",
     "XCSCHEMES",
@@ -74,6 +75,7 @@ string_flag(
         top_level_targets = XCODEPROJ_TARGETS,
         tvos_simulator_cpus = simulator_cpu,
         unfocused_targets = UNFOCUSED_TARGETS,
+        focused_targets = FOCUSED_TARGETS,
         # watchOS Simulator CPU on Apple silicon doesn't have 'sim_' prefix
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
         xcode_configurations = XCODE_CONFIGURATIONS,
