@@ -140,7 +140,7 @@ swift_library(
     }),
     module_name = "iOSApp",
     tags = ["manual"],
-    visibility = ["//iOSApp/Test:__subpackages__"],
+    visibility = ["//iOSApp/Test:__subpackages__", "//iOSApp/Test2:__subpackages__"],
     deps = [
         "//UI",
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
