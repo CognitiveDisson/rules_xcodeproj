@@ -69,7 +69,7 @@ string_flag(
         project_name = "Integration",
         project_options = PROJECT_OPTIONS,
         scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
-        # schemes = get_xcode_schemes(),
+        schemes = get_xcode_schemes(),
         tags = ["manual"],
         top_level_targets = XCODEPROJ_TARGETS,
         tvos_simulator_cpus = simulator_cpu,
